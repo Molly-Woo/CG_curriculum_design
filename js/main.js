@@ -12,6 +12,7 @@ var py = -0.5;
 var pz = 1200;
 var isSnow = false;
 var elk = false;
+var isin = false;
 
 init();
 animate();
@@ -107,17 +108,15 @@ function init() {
 
     var textureTree = new THREE.TextureLoader().load("textures/snow.png");
 
-    
-    // 批量创建雨滴精灵模型
     for (let i = 0; i < 1000; i++) {
         var spriteMaterial = new THREE.SpriteMaterial({
-            map: textureTree,//设置精灵纹理贴图
+            map: textureTree,
         });
         // 创建精灵模型对象
         var sprite = new THREE.Sprite(spriteMaterial);
         scene.add(sprite);
         // 控制精灵大小,
-        sprite.scale.set(10, 10, 1); //// 只需要设置x、y两个分量就可以
+        sprite.scale.set(10, 10, 1);
         var k1,k2,k3;
         do{
             var k1 = 2*(Math.random() - 0.5);
@@ -159,8 +158,18 @@ function init() {
         }
     }
     document.getElementById("btn2").onclick = function () {
-        if (pz == 1200) pz = 200;
-        else pz = 1200;
+        if (!isin) {
+            isin = true;
+            px = 1;
+            py = -0.5;
+            pz = 200;
+        }
+        else {
+            isin = false;
+            px = 0;
+            py = -0.5;
+            pz = 1200;
+        }
         camera.position.set(px, py, pz);
     }
 
@@ -209,26 +218,86 @@ function onKeyDown(event) {
     switch (event.keyCode ) {
         case 33:
             pz-=5;
+            if(isin==true){
+                if((px*px+py*py+pz*pz)>=350000){
+                    pz+=5;
+                }
+            }
+            else{
+                console.log(1);
+                if((px*px+py*py+pz*pz)<370000){
+                    pz+=5;
+                    console.log(2);
+                }
+            }
             break;
-
         case 34:
             pz+=5;
+            if(isin){
+                if((px*px+py*py+pz*pz)>=350000){
+                    pz-=5;
+                }
+            }
+            else{
+                if((px*px+py*py+pz*pz)<370000){
+                    pz-=5;
+                }
+            }
             break;
-
         case 37:
             px-=5;
+            if(isin){
+                if((px*px+py*py+pz*pz)>=350000){
+                    px+=5;
+                }
+            }
+            else{
+                if((px*px+py*py+pz*pz)<370000){
+                    px+=5;
+                }
+            }
             break;
 
         case 38:
             py+=5;
+            if(isin){
+                if((px*px+py*py+pz*pz)>=350000){
+                    py-=5;
+                }
+            }
+            else{
+                if((px*px+py*py+pz*pz)<370000){
+                    py-=5;
+                }
+            }
             break;
 
         case 39:
             px+=5;
+            if(isin){
+                if((px*px+py*py+pz*pz)>=350000){
+                    px-=5;
+                }
+            }
+            else{
+                if((px*px+py*py+pz*pz)<370000){
+                    px-=5;
+                }
+            }
             break;
 
         case 40:
             py-=5;
+            if(isin){
+                if((px*px+py*py+pz*pz)>=350000){
+                    py+=5;
+                }
+            }
+            else{
+                if((px*px+py*py+pz*pz)<370000){
+                    py+=5;
+                }
+            }
             break;
 
     }
