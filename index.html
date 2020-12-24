@@ -11,7 +11,7 @@
 <body>
 
 
-    <div style="width: 350px;
+    <div id="paper" style="width: 350px;
                 height: 400px;
                 position: absolute;
                 top: 50px;
@@ -24,24 +24,21 @@
     <div class="incantation" id  = "btn1" style = "margin:65px 0 0 70px;height:40px;color: #fff; font-size: 20px;line-height: 40px;" onclick = "snow()">下雪了</div>
     <div class="incantation" id  = "btn2" style = "margin:25px 0 0 70px;height:40px;color: #fff; font-size: 20px;line-height: 40px;" onclick = "viewchange()">视角切换  </div>
     <div class="incantation" id  = "btn3" style = "margin:25px 0 0 70px;height:40px;color: #fff; font-size: 20px;line-height: 40px;" onclick = "call()">召唤麋鹿</div>
-    <div class="incantation" style = "margin:25px 0 0 70px;height:40px;color: #fff; font-size: 20px;line-height: 40px;" onclick = "turn_up()">点亮圣诞树</div>
+    <div class="incantation" id  = "btn4" style = "margin:25px 0 0 70px;height:40px;color: #fff; font-size: 20px;line-height: 40px;" onclick = "turn_up()">点击收起</div>
     </div>
+    <div id="paper-top" style="width: 350px;
+                height: 400px;
+                position: absolute;
+                display: none;
+                top: 50px;
+                right: 0px;
+                background-image: url(textures/paper-top.png);
+                background-size:300px;
+                background-repeat:no-repeat;
+    "></div>
     <div id="snowBackground"></div>
     <script type="module" src="js/main.js"></script>
-    <script type="text/javascript" src="js/back.js" ></script>
     
-    <embed src="Jingle Bell.mp3" hidden="true" autostart="true" loop="true">
-    <button id="btn">下雪了</button>
-    <script>
-        var myaudio=new Audio();
-        myaudio.src="音效.mp3";
-
-        //谷歌和欧朋不能直接播放，必须与事件交互
-        //其他浏览器可以
-        btn.onclick=function(){
-            myaudio.play();
-        }
-    </script>
     
     
 </body>
