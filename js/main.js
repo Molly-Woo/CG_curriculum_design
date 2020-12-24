@@ -150,9 +150,11 @@ function init() {
         isSnow = !isSnow;
         if(isSnow){
             scene.add(group);
+            document.getElementById("btn1").innerHTML="雪停了";
         }
         else{
             scene.remove(group);
+            document.getElementById("btn1").innerHTML="下雪了";
         }
     }
     document.getElementById("btn2").onclick = function () {
@@ -165,9 +167,11 @@ function init() {
         elk = !elk;
         if(elk){
             scene.add(elk_m);
+            document.getElementById("btn3").innerHTML="召回麋鹿";
         }
         else{
             scene.remove(elk_m);
+            document.getElementById("btn3").innerHTML="召唤麋鹿";
         }
 
     }
