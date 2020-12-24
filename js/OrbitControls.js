@@ -113,7 +113,6 @@ var OrbitControls = function ( object, domElement ) {
 		return function update() {
 
 			var position = scope.object.position;
-
 			offset.copy( position ).sub( scope.target );
 
 			// rotate offset to "y-axis-is-up" space
@@ -427,20 +426,6 @@ var OrbitControls = function ( object, domElement ) {
 
 	}
 
-	function handleMouseMovePan( event ) {
-
-		panEnd.set( event.clientX, event.clientY );
-
-		panDelta.subVectors( panEnd, panStart ).multiplyScalar( scope.panSpeed );
-
-		pan( panDelta.x, panDelta.y );
-
-		panStart.copy( panEnd );
-
-		scope.update();
-
-	}
-
 	function handleMouseUp( /*event*/ ) {
 
 		// no-op
@@ -465,41 +450,12 @@ var OrbitControls = function ( object, domElement ) {
 
 	function handleKeyDown( event ) {
 
-		var needsUpdate = false;
 
-		switch ( event.keyCode ) {
-
-			case scope.keys.UP:
-				pan( 0, scope.keyPanSpeed );
-				needsUpdate = true;
-				break;
-
-			case scope.keys.BOTTOM:
-				pan( 0, - scope.keyPanSpeed );
-				needsUpdate = true;
-				break;
-
-			case scope.keys.LEFT:
-				pan( scope.keyPanSpeed, 0 );
-				needsUpdate = true;
-				break;
-
-			case scope.keys.RIGHT:
-				pan( - scope.keyPanSpeed, 0 );
-				needsUpdate = true;
-				break;
-
-		}
-
-		if ( needsUpdate ) {
 
 			// prevent the browser from scrolling on cursor keys
 			event.preventDefault();
 
 			scope.update();
-
-		}
-
 
 	}
 
@@ -852,7 +808,7 @@ var OrbitControls = function ( object, domElement ) {
 
 	function onKeyDown( event ) {
 
-		if ( scope.enabled === false || scope.enableKeys === false || scope.enablePan === false ) return;
+		//if ( scope.enabled === false || scope.enableKeys === false || scope.enablePan === false ) return;
 
 		handleKeyDown( event );
 

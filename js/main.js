@@ -101,6 +101,7 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.outputEncoding = THREE.sRGBEncoding;
     document.body.appendChild(renderer.domElement);
+    document.addEventListener( 'keydown', onKeyDown, false );
 
     //
 
@@ -147,9 +148,40 @@ function render() {
         
         if ((sprite.position.x*sprite.position.x+sprite.position.y*sprite.position.y+sprite.position.z*sprite.position.z) > 600*600) {
             sprite.position.y = Math.sqrt(600*600-sprite.position.x*sprite.position.x-sprite.position.z*sprite.position.z)-2;
-            //sprite.position.y = 0;
           }
     });
     camera.lookAt(scene.position);
     renderer.render(scene, camera);
+}
+function onKeyDown(event) {
+    px = camera.position.x;
+    py = camera.position.y;
+    pz = camera.position.z;
+    switch (event.keyCode ) {
+        case 33:
+            pz-=5;
+            break;
+
+        case 34:
+            pz+=5;
+            break;
+
+        case 37:
+            px-=5;
+            break;
+
+        case 38:
+            py+=5;
+            break;
+
+        case 39:
+            px+=5;
+            break;
+
+        case 40:
+            py-=5;
+            break;
+
+    }
+    camera.position.set(px, py, pz);
 }
