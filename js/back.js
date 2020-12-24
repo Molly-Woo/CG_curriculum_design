@@ -2,10 +2,6 @@ function snow() {
     console.log(1);
     alert("下雪")
 }
-function viewchange() {
-    console.log(2);
-    alert("改变视角");
-}
 function call() {
     console.log(3);
     alert("召唤术");
