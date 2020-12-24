@@ -3,7 +3,7 @@ import * as THREE from './three.module.js';
 import { OrbitControls } from './OrbitControls.js';
 import { GLTFLoader } from './GLTFLoader.js';
 
-let controls, camera, scene, model,renderer;
+let controls, camera, scene, model,renderer,elk_m;
 let textureCube;
 let sphereMesh, sphereMaterial;
 var group = new THREE.Group();
@@ -89,7 +89,14 @@ function init() {
         model.rotateX(Math.PI / 2);
         scene.add(model);
     });
-
+    
+    //麋鹿模型
+    const loader2 = new GLTFLoader();
+    loader2.load( 'models/elk.glb', function ( gltf ) {
+        elk_m = gltf.scene;
+        elk_m.scale.set(300, 300, 300);
+        elk_m.position.set(0,-130,0);
+    });
 
 
     const geometry = new THREE.IcosahedronBufferGeometry(600, 15);
@@ -157,14 +164,10 @@ function init() {
     document.getElementById("btn3").onclick = function (){
         elk = !elk;
         if(elk){
-            //麋鹿模型
-            const loader2 = new GLTFLoader();
-            loader2.load( 'models/elk.glb', function ( gltf ) {
-            model = gltf.scene;
-            model.scale.set(300, 300, 300);
-            model.position.set(0,-130,0);
-            scene.add(model);
-            });
+            scene.add(elk_m);
+        }
+        else{
+            scene.remove(elk_m);
         }
 
     }
