@@ -15,7 +15,9 @@ var elk = false;
 
 init();
 animate();
+music();
 function init() {
+
     // CAMERAS
 
     camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 100000);
@@ -151,6 +153,9 @@ function init() {
         isSnow = !isSnow;
         if(isSnow){
             scene.add(group);
+            var myaudio=new Audio();
+            myaudio.src="音效.mp3";
+            myaudio.play();
             document.getElementById("btn1").innerHTML="雪停了";
         }
         else{
@@ -159,6 +164,10 @@ function init() {
         }
     }
     document.getElementById("btn2").onclick = function () {
+        
+        var myaudio=new Audio();
+        myaudio.src="音效.mp3";
+        myaudio.play();
         if (pz == 1200) pz = 200;
         else pz = 1200;
         camera.position.set(px, py, pz);
@@ -168,13 +177,25 @@ function init() {
         elk = !elk;
         if(elk){
             scene.add(elk_m);
+            var myaudio=new Audio();
+            myaudio.src="音效.mp3";
+            myaudio.play();
             document.getElementById("btn3").innerHTML="召回麋鹿";
         }
         else{
             scene.remove(elk_m);
             document.getElementById("btn3").innerHTML="召唤麋鹿";
         }
+    }
 
+    document.getElementById("btn4").onclick = function (){
+        document.getElementById("paper").style.display="none";
+        document.getElementById("paper-top").style.display="block";
+    }
+
+    document.getElementById("paper-top").onclick = function (){
+        document.getElementById("paper").style.display="block";
+        document.getElementById("paper-top").style.display="none";
     }
 }
 
@@ -233,4 +254,10 @@ function onKeyDown(event) {
 
     }
     camera.position.set(px, py, pz);
+}
+
+function music(){
+    var audio=new Audio();
+    audio.src="Jingle Bell.mp3";
+    audio.play();
 }
