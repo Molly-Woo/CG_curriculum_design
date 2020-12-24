@@ -11,6 +11,7 @@ var px = 0;
 var py = -0.5;
 var pz = 1200;
 var isSnow = false;
+var elk = false;
 
 init();
 animate();
@@ -40,15 +41,6 @@ function init() {
     scene.background = textureCube;
     textureCube.mapping = THREE.CubeRefractionMapping;
 
-    //麋鹿模型
-    const loader2 = new GLTFLoader();
-    loader2.load( 'models/elk.glb', function ( gltf ) {
-        model = gltf.scene;
-        model.scale.set(300, 300, 300);
-        model.position.set(0,-130,0);
-        scene.add(model);
-
-    });
 
     //雪地模型
     const loader3 = new GLTFLoader();
@@ -98,22 +90,12 @@ function init() {
         scene.add(model);
     });
 
+
+
     const geometry = new THREE.IcosahedronBufferGeometry(600, 15);
     sphereMaterial = new THREE.MeshLambertMaterial({ envMap: textureCube, opacity: 0.7, transparent: true });
     sphereMesh = new THREE.Mesh(geometry, sphereMaterial);
     scene.add(sphereMesh);
-
-    /*
-    var geometry1 = new THREE.BoxGeometry(50, 50, 50);
-    var material1 = new THREE.MeshLambertMaterial({
-        color: 0x0000ff,
-        opacity: 0.7,
-        transparent: true
-    }); //材质对象Material
-    var mesh1 = new THREE.Mesh(geometry1, material1); //网格模型对象Mesh
-    scene.add(mesh1); //网格模型添加到场景中
-*/
-    //
 
 
     var textureTree = new THREE.TextureLoader().load("textures/snow.png");
@@ -170,6 +152,21 @@ function init() {
         if (pz == 1200) pz = 200;
         else pz = 1200;
         camera.position.set(px, py, pz);
+    }
+
+    document.getElementById("btn3").onclick = function (){
+        elk = !elk;
+        if(elk){
+            //麋鹿模型
+            const loader2 = new GLTFLoader();
+            loader2.load( 'models/elk.glb', function ( gltf ) {
+            model = gltf.scene;
+            model.scale.set(300, 300, 300);
+            model.position.set(0,-130,0);
+            scene.add(model);
+            });
+        }
+
     }
 }
 
