@@ -40,25 +40,70 @@ function init() {
     scene.background = textureCube;
     textureCube.mapping = THREE.CubeRefractionMapping;
 
-    //
+    //麋鹿模型
     const loader2 = new GLTFLoader();
-    loader2.load( 'models/RobotExpressive.glb', function ( gltf ) {
-
+    loader2.load( 'models/elk.glb', function ( gltf ) {
         model = gltf.scene;
-        model.scale.set(100, 100, 100);
-        console.log(model);
-        scene.add( model );
-        console.log(scene);
+        model.scale.set(300, 300, 300);
+        model.position.set(0,-130,0);
+        scene.add(model);
 
-    }, undefined, function ( e ) {
-        console.error( e );
-    } );
+    });
+
+    //雪地模型
+    const loader3 = new GLTFLoader();
+    loader3.load( 'models/Snowscape.glb', function ( gltf ) {
+        model = gltf.scene;
+        model.scale.set(850, 850, 850);
+        model.position.set(0,-280,-70);
+        scene.add(model);
+
+    });
+
+    //圣诞树模型
+    const loader4 = new GLTFLoader();
+    loader4.load( 'models/Tree.glb', function ( gltf ) {
+        model = gltf.scene;
+        model.scale.set(530, 680, 530);
+        model.position.set(370,-220,100);
+        scene.add(model);
+
+    });
+
+    //松果模型
+    const pine1 = new GLTFLoader();
+    pine1.load( 'models/Pine.glb', function ( gltf ) {
+        model = gltf.scene;
+        model.scale.set(500, 500, 500);
+        model.position.set(200,-215,-100);
+        model.rotateX(Math.PI / 4);
+        scene.add(model);
+    });
+
+    const pine2 = new GLTFLoader();
+    pine2.load( 'models/Pine.glb', function ( gltf ) {
+        model = gltf.scene;
+        model.scale.set(500, 500, 500);
+        model.position.set(210,-220,-120);
+        model.rotateY(-Math.PI / 4);
+        scene.add(model);
+    });
+
+    const pine3 = new GLTFLoader();
+    pine3.load( 'models/Pine.glb', function ( gltf ) {
+        model = gltf.scene;
+        model.scale.set(500, 500, 500);
+        model.position.set(50,-210,-160);
+        model.rotateX(Math.PI / 2);
+        scene.add(model);
+    });
 
     const geometry = new THREE.IcosahedronBufferGeometry(600, 15);
     sphereMaterial = new THREE.MeshLambertMaterial({ envMap: textureCube, opacity: 0.7, transparent: true });
     sphereMesh = new THREE.Mesh(geometry, sphereMaterial);
     scene.add(sphereMesh);
 
+    /*
     var geometry1 = new THREE.BoxGeometry(50, 50, 50);
     var material1 = new THREE.MeshLambertMaterial({
         color: 0x0000ff,
@@ -67,7 +112,7 @@ function init() {
     }); //材质对象Material
     var mesh1 = new THREE.Mesh(geometry1, material1); //网格模型对象Mesh
     scene.add(mesh1); //网格模型添加到场景中
-
+*/
     //
 
 
